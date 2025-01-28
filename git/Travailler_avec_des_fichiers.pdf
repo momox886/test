@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html  dir="ltr" lang="fr" xml:lang="fr">
+<head>
+    <title>Se connecter sur le site | Isen</title>
+    <link rel="shortcut icon" href="https://educ.isen-mediterranee.fr/cours/theme/image.php/isen/theme/1729117866/favicon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, Se connecter sur le site | Isen" />
+<link rel="stylesheet" type="text/css" href="https://educ.isen-mediterranee.fr/cours/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://educ.isen-mediterranee.fr/cours/theme/styles.php/isen/1729117866_1682544705/all" />
+<script>
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/educ.isen-mediterranee.fr\/cours","homeurl":{},"sesskey":"l06ezdNhGQ","sessiontimeout":"7200","sessiontimeoutwarning":1200,"themerev":"1729117866","slasharguments":1,"theme":"isen","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1728502184","admin":"admin","svgicons":true,"usertimezone":"Europe\/Berlin","language":"fr","courseId":1,"courseContextId":2,"contextid":1,"contextInstanceId":0,"langrev":1737604204,"templaterev":"1728502184"};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/educ.isen-mediterranee.fr\/cours\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/educ.isen-mediterranee.fr\/cours\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/educ.isen-mediterranee.fr\/cours\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/educ.isen-mediterranee.fr\/cours\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/educ.isen-mediterranee.fr\/cours\/theme\/yui_combo.php?m\/1728502184\/","combine":true,"comboBase":"https:\/\/educ.isen-mediterranee.fr\/cours\/theme\/yui_combo.php?","ext":false,"root":"m\/1728502184\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-qbank_editquestion-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_translations-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/educ.isen-mediterranee.fr\/cours\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/educ.isen-mediterranee.fr\/cours\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1728502184\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/educ.isen-mediterranee.fr\/cours\/lib\/javascript.php\/1728502184\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/educ.isen-mediterranee.fr\/cours\/lib\/javascript.php\/1728502184\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdn.jsdelivr.net\/npm\/mathjax@2.7.9\/MathJax.js?delayStartupUntil=configured"}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+<meta name="robots" content="noindex" /><meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  id="page-login-index" class="format-site  path-login dir-ltr lang-fr yui-skin-sam yui3-skin-sam educ-isen-mediterranee-fr--cours pagelayout-login course-1 context-1 notloggedin ">
+
+<nav class="navbar navbar-expand navbar-dark moodle-has-zindex px-lg-5 py-lg-3" aria-label="Navigation du site">
+
+    <a href="/" class="navbar-brand has-logo
+            ">
+        <span class="logo d-sm-inline">
+            <img src="https://educ.isen-mediterranee.fr/cours/pluginfile.php/1/core_admin/logo/0x200/1729117866/logo-160-71.png" alt="Isen">
+        </span>
+    </a>
+
+    <ul class="navbar-nav d-none d-md-flex flex-grow-1 justify-content-end">
+        <!-- custom_menu -->
+        <li class="nav-item">
+    <a class="nav-link" href="https://educ.isen-mediterranee.fr/cours/course/index.php" >Catalogue des cours</a>
+</li><li class="nav-item">
+    <a class="nav-link" href="https://educ.isen-mediterranee.fr/cours/my" >Mes études</a>
+</li><li class="nav-item">
+    <a class="nav-link" href="https://educ.isen-mediterranee.fr/cours/blog/?tag=fr" >Info&amp;News</a>
+</li><li class="nav-item">
+    <a class="nav-link" href="https://ent.isen-mediterranee.fr/" >ENT</a>
+</li><li class="dropdown nav-item">
+    <a class="dropdown-toggle nav-link" id="drop-down-6798ef17a52b26798ef17a4b124" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" title="Langue" aria-controls="drop-down-menu-6798ef17a52b26798ef17a4b124">
+        Français ‎(fr)‎
+    </a>
+    <div class="dropdown-menu" role="menu" id="drop-down-menu-6798ef17a52b26798ef17a4b124" aria-labelledby="drop-down-6798ef17a52b26798ef17a4b124">
+                <a class="dropdown-item" role="menuitem" href="https://educ.isen-mediterranee.fr/cours/login/index.php?lang=en"  lang="en" >English ‎(en)‎</a>
+                <a class="dropdown-item" role="menuitem" href="https://educ.isen-mediterranee.fr/cours/login/index.php?lang=fr"  >Français ‎(fr)‎</a>
+    </div>
+</li>
+        <!-- page_heading_menu -->
+        
+    </ul>
+
+    <div id="usernavigation" class="navbar-nav ml-auto">
+        
+        <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
+        </div>
+    </div>
+</nav>
+<div id="page">
+    <div id="wrapper" class="container">
+
+        <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Passer au contenu principal</a>
+</div><script src="https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/polyfills/polyfill.js"></script>
+<script src="https://educ.isen-mediterranee.fr/cours/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script><script src="https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/javascript-static.js"></script>
+<script>
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+        <div id="page-content" class="row">
+            <div id="region-main-box" class="col-12">
+                <section class="col-12" aria-label="Contenu">
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main"><span id="maincontent"></span><div class="my-1 my-sm-5"></div>
+<div class="row justify-content-center">
+<div class="col-xl-6 col-sm-8 ">
+<div class="skewframe">
+    <div class="content">
+        <h2 class="text-center" ><img src="https://educ.isen-mediterranee.fr/cours/theme/image.php/isen/theme/1729117866/logo" class="img-fluid" title="Isen" alt="Isen"/></h2>
+        <h3 class="text-center">Identifiez-vous</h3>
+        <div>
+
+
+            <div class="row justify-content-md-center">
+                <form class="mt-3" action="https://educ.isen-mediterranee.fr/cours/login/index.php" method="post" id="login">
+                    <input id="anchor" type="hidden" name="anchor" value="">
+                    <script>document.getElementById('anchor').value = location.hash;</script>
+                    <input type="hidden" name="logintoken" value="xzBdw9AcOkxYB8qB8hbefiibq3EnUKmk">
+                    <div class="form-group">
+                        <label for="username" class="sr-only">
+                                Nom d'utilisateur
+                        </label>
+                        <input type="text" name="username" id="username"
+                            class="form-control rounded"
+                            value=""
+                            placeholder="Nom d'utilisateur"
+                            autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Mot de passe</label>
+                        <input type="password" name="password" id="password" value=""
+                            class="form-control rounded"
+                            placeholder="Mot de passe"
+                            autocomplete="current-password">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mt-3 rounded" id="loginbtn">Connexion</button>
+                    </div>
+                </form>
+                
+                <div class="forgetpass mt-3">
+                    <p class="text-center">
+                        <a href="/vous-avez-un-probleme-de-connexion/">Vous avez un problème de connexion</a><br/>
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div></div>
+                    
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="wrapper-footer">
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="page-footer">
+
+                    <div id="course-footer"></div>
+                    
+                    <nav id="footer-menu" class="nav justify-content-end menu-footer-container" aria-label="Menu personnalisé">
+ 
+                        <div class="menu-footer-container">
+                            <ul id="footer-menu" class="nav justify-content-end">
+                                <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34 nav-item">
+                                    <a title="Contact" href="/contact" class="nav-link">Contact</a>
+                                </li>
+                                <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15 nav-item">
+                                    <a title="Mentions légales" href="/mentions-legales" class="nav-link">Mentions légales</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                    <script>
+//<![CDATA[
+var require = {
+    baseUrl : 'https://educ.isen-mediterranee.fr/cours/lib/requirejs.php/1728502184/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/jquery/jquery-3.6.1.min',
+        jqueryui: 'https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/jquery/ui-1.13.2/jquery-ui.min',
+        jqueryprivate: 'https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script src="https://educ.isen-mediterranee.fr/cours/lib/javascript.php/1728502184/lib/requirejs/require.min.js"></script>
+<script>
+//<![CDATA[
+M.util.js_pending("core/first");
+require(['core/first'], function() {
+require(['core/prefetch'])
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp('fr');
+});;
+
+require(['jquery', 'core/custom_interaction_events'], function($, CustomEvents) {
+    CustomEvents.define('#single_select6798ef17a4b123', [CustomEvents.events.accessibleChange]);
+    $('#single_select6798ef17a4b123').on(CustomEvents.events.accessibleChange, function() {
+        var ignore = $(this).find(':selected').attr('data-ignore');
+        if (typeof ignore === typeof undefined) {
+            $('#single_select_f6798ef17a4b122').submit();
+        }
+    });
+});
+;
+
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+;
+
+;
+M.util.js_pending('core/notification'); require(['core/notification'], function(amd) {amd.init(1, []); M.util.js_complete('core/notification');});;
+M.util.js_pending('core/log'); require(['core/log'], function(amd) {amd.setConfig({"level":"warn"}); M.util.js_complete('core/log');});;
+M.util.js_pending('core/page_global'); require(['core/page_global'], function(amd) {amd.init(); M.util.js_complete('core/page_global');});;
+M.util.js_pending('core/utility'); require(['core/utility'], function(amd) {M.util.js_complete('core/utility');});;
+M.util.js_pending('core/storage_validation'); require(['core/storage_validation'], function(amd) {amd.init(null); M.util.js_complete('core/storage_validation');});
+    M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script>
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Modifi\u00e9 le","name":"Nom","error":"Erreur","info":"Information","yes":"Oui","no":"Non","cancel":"Annuler","confirm":"Confirmer","areyousure":"Voulez-vous vraiment continuer\u00a0?","closebuttontitle":"Fermer","unknownerror":"Erreur inconnue","file":"Fichier","url":"URL","collapseall":"Tout replier","expandall":"Tout d\u00e9plier"},"repository":{"type":"Type","size":"Taille","invalidjson":"Cha\u00eene JSON non valide","nofilesattached":"Aucun fichier joint","filepicker":"S\u00e9lecteur de fichiers","logout":"D\u00e9connexion","nofilesavailable":"Aucun fichier disponible","norepositoriesavailable":"D\u00e9sol\u00e9, aucun de vos d\u00e9p\u00f4ts actuels ne peut retourner de fichiers dans le format requis.","fileexistsdialogheader":"Le fichier existe","fileexistsdialog_editor":"Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint au texte que vous modifiez.","fileexistsdialog_filemanager":"Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint","renameto":"Renommer \u00e0 \u00ab\u00a0{$a}\u00a0\u00bb","referencesexist":"Il y a {$a} liens qui pointent vers ce fichier","select":"S\u00e9lectionnez"},"admin":{"confirmdeletecomments":"Voulez-vous vraiment supprimer des commentaires\u00a0?","confirmation":"Confirmation"},"debug":{"debuginfo":"Info de d\u00e9bogage","line":"Ligne","stacktrace":"Trace de la pile"},"langconfig":{"labelsep":"&nbsp;"}};
+//]]>
+</script>
+<script>
+//<![CDATA[
+(function() {Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"MathJax.Hub.Config({\r\n    config: [\"Accessible.js\", \"Safe.js\"],\r\n    errorSettings: { message: [\"!\"] },\r\n    skipStartupTypeset: true,\r\n    messageStyle: \"none\"\r\n});\r\n","lang":"fr"});
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random6798ef17a4b127'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random6798ef17a4b127'); });
+})();
+//]]>
+</script>
+
+
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+
+</body>
+</html>
