@@ -1,0 +1,500 @@
+#include <SPI.h>
+#include <MFRC522.h>
+#include <Wire.h>
+#include <rgb_lcd.h>
+
+#define RST_PIN 12
+#define SS_PIN 13
+
+#define VRX_PIN A0
+#define VRY_PIN A1
+#define SW_PIN 7
+
+MFRC522 rfid(SS_PIN, RST_PIN);
+rgb_lcd lcd;
+
+const String authorizedUID = "03 0E AE 6F";
+bool isAuthenticated = false;
+
+// Options de paiement
+const int NUM_PAYMENT_OPTIONS = 4;
+const char* paymentOptions[NUM_PAYMENT_OPTIONS] = {"Cafe", "Sandwich", "Boisson", "Snack"};
+const int paymentAmounts[NUM_PAYMENT_OPTIONS] = {2, 5, 3, 2};
+
+void setup() {
+  Serial.begin(9600);
+  SPI.begin();
+  rfid.PCD_Init();
+  lcd.begin(16, 2);
+  lcd.setRGB(255, 0, 255);
+  lcd.setCursor(0, 0);
+  lcd.print("Approchez Carte");
+  pinMode(SW_PIN, INPUT_PULLUP);
+}
+
+void loop() {
+  if (!isAuthenticated) {
+    if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
+      String uidString = getUIDString();
+      
+      lcd.setRGB(0, 0, 255);
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("UID: " + uidString);
+      delay(2000);
+
+      if (uidString == authorizedUID) {
+        isAuthenticated = true;
+        showMenu();
+      } else {
+        lcd.setRGB(255, 0, 0);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Carte inconnue");
+        delay(2000);
+      }
+
+      rfid.PICC_HaltA();
+      rfid.PCD_StopCrypto1();
+      resetLCD();
+    }
+  } else {
+    showMenu();
+  }
+}
+
+String getUIDString() {
+  String uidString = "";
+  for (byte i = 0; i < rfid.uid.size; i++) {
+    uidString += (rfid.uid.uidByte[i] < 0x10 ? "0" : "") + String(rfid.uid.uidByte[i], HEX) + " ";
+  }
+  uidString.trim();
+  uidString.toUpperCase();
+  return uidString;
+}
+
+void resetLCD() {
+  lcd.setRGB(255, 0, 255);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Approchez Carte");
+}
+
+void showMenu() {
+  const char* menuItems[] = {"+ Fonds", "- Fonds", "Lire", "Payer", "Reset", "Quitter"};
+  int menuSize = sizeof(menuItems) / sizeof(menuItems[0]);
+  int menuOption = 0;
+
+  while (isAuthenticated) {
+    int yValue = analogRead(VRY_PIN);
+    int swState = digitalRead(SW_PIN);
+
+    if (yValue < 400) {
+      menuOption = (menuOption - 1 + menuSize) % menuSize;
+    } else if (yValue > 600) {
+      menuOption = (menuOption + 1) % menuSize;
+    }
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("> " + String(menuItems[menuOption]));
+    lcd.setCursor(0, 1);
+    lcd.print("  " + String(menuItems[(menuOption + 1) % menuSize]));
+
+    if (swState == LOW) {
+      delay(200); // Debounce
+      handleMenuOption(menuOption);
+      if (!isAuthenticated) break;
+    }
+
+    delay(200);
+  }
+
+  resetLCD();
+}
+
+void handleMenuOption(int option) {
+  switch (option) {
+    case 0:
+      addFunds();
+      break;
+    case 1:
+      withdrawFunds();
+      break;
+    case 2:
+      readCardData();
+      break;
+    case 3:
+      processPaiement();
+      break;
+    case 4:
+      resetBalance();
+      break;
+    case 5:
+      isAuthenticated = false;
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Deconnexion");
+      delay(2000);
+      break;
+  }
+}
+
+void addFunds() {
+  int amounts[] = {20, 50, 100, 200};
+  int selectedAmount = 0;
+  bool buttonReleased = false;
+
+  while (true) {
+    int yValue = analogRead(VRY_PIN);
+    int swState = digitalRead(SW_PIN);
+
+    if (buttonReleased) {
+      if (yValue < 400) {
+        selectedAmount = (selectedAmount - 1 + 4) % 4;
+      } else if (yValue > 600) {
+        selectedAmount = (selectedAmount + 1) % 4;
+      }
+    }
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Ajouter:");
+    lcd.setCursor(0, 1);
+    lcd.print("> ");
+    lcd.print(amounts[selectedAmount]);
+    lcd.print(" EUR");
+
+    if (swState == HIGH) {
+      buttonReleased = true;
+    }
+
+    if (buttonReleased && swState == LOW) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Approchez carte");
+      lcd.setCursor(0, 1);
+      lcd.print("pour ajouter");
+      
+      if (!waitForCard()) {
+        return;
+      }
+
+      int currentBalance = readBalanceFromCard();
+      if (currentBalance < 0) {
+        displayError("Erreur lecture");
+        return;
+      }
+
+      int newBalance = currentBalance + amounts[selectedAmount];
+
+      if (!writeNewBalanceToCard(newBalance)) {
+        displayError("Erreur ecriture");
+        return;
+      }
+
+      displayScrollingMessage("Ajoute: " + String(amounts[selectedAmount]) + " EUR", "Solde: " + String(newBalance) + " EUR");
+      break;
+    }
+
+    delay(200);
+  }
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}
+
+void withdrawFunds() {
+  int amounts[] = {20, 50, 100, 200};
+  int selectedAmount = 0;
+  bool buttonReleased = false;
+
+  while (true) {
+    int yValue = analogRead(VRY_PIN);
+    int swState = digitalRead(SW_PIN);
+
+    if (buttonReleased) {
+      if (yValue < 400) {
+        selectedAmount = (selectedAmount - 1 + 4) % 4;
+      } else if (yValue > 600) {
+        selectedAmount = (selectedAmount + 1) % 4;
+      }
+    }
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Retirer:");
+    lcd.setCursor(0, 1);
+    lcd.print("> ");
+    lcd.print(amounts[selectedAmount]);
+    lcd.print(" EUR");
+
+    if (swState == HIGH) {
+      buttonReleased = true;
+    }
+
+    if (buttonReleased && swState == LOW) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Approchez carte");
+      lcd.setCursor(0, 1);
+      lcd.print("pour retirer");
+      
+      if (!waitForCard()) {
+        return;
+      }
+
+      int currentBalance = readBalanceFromCard();
+      if (currentBalance < 0) {
+        displayError("Erreur lecture");
+        return;
+      }
+
+      if (currentBalance >= amounts[selectedAmount]) {
+        int newBalance = currentBalance - amounts[selectedAmount];
+        
+        if (!writeNewBalanceToCard(newBalance)) {
+          displayError("Erreur ecriture");
+          return;
+        }
+
+        displayScrollingMessage("Retire: " + String(amounts[selectedAmount]) + " EUR", "Solde: " + String(newBalance) + " EUR");
+      } else {
+        displayScrollingMessage("Solde insuffisant", "Solde: " + String(currentBalance) + " EUR");
+      }
+      break;
+    }
+
+    delay(200);
+  }
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}
+
+void readCardData() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Approchez carte");
+  lcd.setCursor(0, 1);
+  lcd.print("pour lire");
+  
+  if (!waitForCard()) {
+    return;
+  }
+
+  int currentBalance = readBalanceFromCard();
+  if (currentBalance < 0) {
+    displayError("Erreur lecture");
+    return;
+  }
+
+  displayScrollingMessage("Solde lu:", String(currentBalance) + " EUR");
+
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}
+
+void processPaiement() {
+  int selectedOption = 0;
+  bool buttonReleased = false;
+
+  while (true) {
+    int yValue = analogRead(VRY_PIN);
+    int swState = digitalRead(SW_PIN);
+
+    if (buttonReleased) {
+      if (yValue < 400) {
+        selectedOption = (selectedOption - 1 + NUM_PAYMENT_OPTIONS) % NUM_PAYMENT_OPTIONS;
+      } else if (yValue > 600) {
+        selectedOption = (selectedOption + 1) % NUM_PAYMENT_OPTIONS;
+      }
+    }
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Payer:");
+    lcd.setCursor(0, 1);
+    lcd.print(paymentOptions[selectedOption]);
+    lcd.print(" ");
+    lcd.print(paymentAmounts[selectedOption]);
+    lcd.print(" EUR");
+
+    if (swState == HIGH) {
+      buttonReleased = true;
+    }
+
+    if (buttonReleased && swState == LOW) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Approchez carte");
+      lcd.setCursor(0, 1);
+      lcd.print("pour payer");
+      
+      if (!waitForCard()) {
+        return;
+      }
+
+      int currentBalance = readBalanceFromCard();
+      if (currentBalance < 0) {
+        displayError("Erreur lecture");
+        return;
+      }
+
+      if (currentBalance >= paymentAmounts[selectedOption]) {
+        int newBalance = currentBalance - paymentAmounts[selectedOption];
+        
+        if (!writeNewBalanceToCard(newBalance)) {
+          displayError("Erreur ecriture");
+          return;
+        }
+
+        displayScrollingMessage("Paiement effectue", "Solde: " + String(newBalance) + " EUR");
+      } else {
+        displayScrollingMessage("Solde insuffisant", "Solde: " + String(currentBalance) + " EUR");
+      }
+      break;
+    }
+
+    delay(200);
+  }
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}
+
+void resetBalance() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Reinitialiser");
+  lcd.setCursor(0, 1);
+  lcd.print("le solde? (0 EUR)");
+  delay(2000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Approchez carte");
+  lcd.setCursor(0, 1);
+  lcd.print("pour confirmer");
+  
+  if (!waitForCard()) {
+    return;
+  }
+
+  if (!writeNewBalanceToCard(0)) {
+    displayError("Erreur ecriture");
+    return;
+  }
+
+  displayScrollingMessage("Solde reinitialise", "Nouveau solde: 0 EUR");
+
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}
+
+int readBalanceFromCard() {
+  MFRC522::MIFARE_Key key;
+  for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
+
+  byte block = 4;
+  MFRC522::StatusCode status;
+
+  status = rfid.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(rfid.uid));
+  if (status != MFRC522::STATUS_OK) {
+    Serial.println(F("Erreur d'authentification"));
+    return -1;
+  }
+
+  byte buffer[18];
+  byte size = sizeof(buffer);
+  status = rfid.MIFARE_Read(block, buffer, &size);
+  if (status != MFRC522::STATUS_OK) {
+    Serial.print(F("Erreur de lecture. Code: "));
+    Serial.println(rfid.GetStatusCodeName(status));
+    return -1;
+  }
+
+  String balanceStr = "";
+  for (byte i = 0; i < 16 && buffer[i] != 0; i++) {
+    balanceStr += (char)buffer[i];
+  }
+
+  return balanceStr.toInt();
+}
+
+bool writeNewBalanceToCard(int newBalance) {
+  MFRC522::MIFARE_Key key;
+  for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
+
+  byte block = 4;
+  MFRC522::StatusCode status;
+
+  status = rfid.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(rfid.uid));
+  if (status != MFRC522::STATUS_OK) {
+    Serial.println(F("Erreur d'authentification"));
+    return false;
+  }
+
+  byte buffer[16];
+  memset(buffer, 0, sizeof(buffer));
+  String balanceStr = String(newBalance);
+  balanceStr.getBytes(buffer, 16);
+
+  status = rfid.MIFARE_Write(block, buffer, 16);
+  if (status != MFRC522::STATUS_OK) {
+    Serial.print(F("Erreur d'écriture. Code: "));
+    Serial.println(rfid.GetStatusCodeName(status));
+    return false;
+  }
+
+  return true;
+}
+
+bool waitForCard() {
+  unsigned long startTime = millis();
+  while (millis() - startTime < 10000) { // Attendre jusqu'à 10 secondes
+    if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
+      return true;
+    }
+    delay(100);
+  }
+  
+  displayError("Temps ecoule");
+  return false;
+}
+
+void displayError(const char* error) {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(error);
+  delay(2000);
+}
+
+void displayScrollingMessage(String line1, String line2) {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(line1);
+  lcd.setCursor(0, 1);
+  lcd.print(line2);
+
+  int maxLength = max(line1.length(), line2.length());
+  if (maxLength > 16) {
+    for (int i = 0; i <= maxLength - 16; i++) {
+      lcd.scrollDisplayLeft();
+      delay(400);
+    }
+    delay(1000);
+    for (int i = 0; i <= maxLength - 16; i++) {
+      lcd.scrollDisplayRight();
+      delay(400);
+    }
+  }
+  delay(3000);
+}
+
+String formatCurrency(int amount) {
+  String result = String(amount);
+  int length = result.length();
+  for (int i = length - 3; i > 0; i -= 3) {
+    result = result.substring(0, i) + "." + result.substring(i);
+  }
+  return result + " EUR";
+}
+
